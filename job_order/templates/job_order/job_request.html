@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job order form</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 55%;
+            margin: auto;
+            border: 2px solid black;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            font-weight: bold;
+            font-size: x-large;
+            padding-bottom: 17px;
+        }
+
+        .section {
+            margin-top: 10px;
+            align-self: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            align-self: center;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .checkbox {
+            width: 10px;
+            height: 20px;
+        }
+
+        .input-box {
+            width: 85.56%;
+            padding: 5px;
+        }
+
+        .bor {
+            border: 1px solid black;
+        }
+    </style>
+    <html>
+
+<body>
+    <div class="container">
+
+        <div class="header"><b style="font-size: smaller;">GEN-LQAD-ELEC-JO-01-01-00</b></br>JOB
+            ORDER GIVEN TO
+            LQAD(ELEC),
+            SRQG, LEOS</div>
+        <table>
+            <tr>
+                <td style="text-align: center;">FRM-8200-01</td>
+                <td style="text-align: center;">Ref. No.: ELEC/ JO/ FCW/ 20 /</td>
+                <td style="text-align: center;">Today Date:<input type="date" class="date-box" /></td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td rowspan="3" style="border-right: 2px solid black;">Requirement </br>(Please tick appropriate column)
+                </td>
+                <td><input type="checkbox" class="checkbox">Test & Evaluation</td>
+                <td><input type="checkbox" class="checkbox">Circuit Schematic Clearance</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="checkbox">Reliability Analysis</td>
+                <td><input type="checkbox" class="checkbox">PA Plan Generation</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 1px solid black;"><input type="checkbox" class="checkbox">FPGA CWT</td>
+                <td style="border-bottom: 1px solid black;"><input type="checkbox" class="checkbox">Software CWT</td>
+
+            </tr>
+        </table>
+        </br>
+        <table>
+            <tr>
+                <td style="text-align: center ;">
+                    Project</td>
+                <td><input type="text" style="width: 96%; height:33px;"></td>
+                <td style="border: 1px solid black;">
+                    Sensor: <input type="text" style="width: 84%;height:33px;">
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td style="text-align: center;border-bottom:1px solid black;border-right: 2px solid black;">
+                    <b>Exact Nature of Work</b>
+                </td>
+                <td colspan="2" style="border-top: 1px solid black;"><input type="text"
+                        style="width: 99.5%;height: 30px;">
+                </td>
+            </tr>
+            <tr>
+                <th style="border: 1px solid black;border-right: 0px solid black;"></th>
+                <th style="text-align: center;border-bottom: 1px solid black;border-top: 1px solid black;">Availability
+                    of
+                    inputs</th>
+                <th style="border-top: 1px solid black;border-bottom: 1px solid black;"></th>
+            </tr>
+            <tr class="bor">
+                <td rowspan="3" class="bor"><b>Test & Evaluation</td></b>
+                <td class="bor" style="text-align:justify;">1. Format for test Readiness Review/Checklist for
+                    </br>initaing Test & Evaluations activites <b>GEN-LQAD-ELEC-</br>CL-05.01-00</b></td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor">2. Checklist/Requirements for Test & Evaluation of <br>Simulators
+                    <B>GEN-LQAD-ELEC-CL-07.01-00
+                </td></B>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor">3. Checklist Requirements for Test & Evaluation of Checkout Systems
+                    <B>GEN-LQAD-ELEC-CL-08.01-00</B>
+                </td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td rowspan="2" class="bor"><B>Reliability Analysis</td></b>
+                <td class="bor">1.<b>"Checklist Requirements for performing Reliability Analysis:"
+                        GEN-LQAD-ELEC-CL-02.01-00</B>
+                </td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor">2.Electrical Configuration Document</td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor"><b>Circuit Schematic Clearance</td></b>
+                <td class="bor">"Checklist for initaing Circuit Schematic
+                    Clearance":<b> GEN-<br>LQAD-ELEC-CL-03.01-00</b></td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor"><b>PA Plan Generation</td></b>
+                <td class="bor">"Checklist For Inputs Required for Generating Product <br>Assurance
+                    Plan": <b>GEN-LQAD-ELEC-CL-04.01-00</b></td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor"><b>FPGA Code <br>Walkthrough</td></b>
+                <td class="bor">"Checklist for initiating FPGA Code Walkthrough": <b>GEN-LQAD-<br>ELEC-CL-09.01-00</b>
+                </td>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr class="bor">
+                <td class="bor"><b>Software Code <br> Walkthrough</td></b>
+                <td class="bor">"Checklist for initiating Software Code Walk through":
+                    <b>GEN-<br>LQAD-ELEC-CL-10.01-00</b>
+                <td class="bor"><input type="checkbox" class="checkbox"></td>
+            </tr>
+
+            <tr>
+                <td class="bor"><b>Required by (date):</td></b>
+                <td class="bor" colspan="2"><input type="date" class="input-box"></td>
+            </tr>
+
+
+            <tr>
+                <td style="text-align: right;"><b>Request Provided by:</td></b>
+                <td></td>
+                <td><b>Request authorized by:</td></b>
+            </tr>
+            <tr>
+                <td colspan="1"><input type="text" style="width: 99%; height:33px;"></td>
+                <td></td>
+                <td colspan="1"><input type="text" style="width: 99%; height:33px;"></td>
+            </tr>
+
+        </table>
+    </div>
+
+
+</body>
+
+</html>
