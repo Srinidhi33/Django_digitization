@@ -81,7 +81,8 @@ docs/_build/
 # PyBuilder
 .pybuilder/
 target/
-media
+media/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
