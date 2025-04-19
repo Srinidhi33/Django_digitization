@@ -11,11 +11,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -26,18 +30,24 @@ SECRET_KEY = "django-insecure-r3*h&49v$7uudz@+qg)8zr6ei-erikysl_8q(#c(c((*hs&h!7
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = '/login/'  # URL for login page (redirects users if not logged in)
+LOGOUT_REDIRECT_URL = '/login/'
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    "job_order.apps.JobOrderConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
     "django.contrib.staticfiles",
+    "job_order",
+    "crispy_bootstrap4",
+    'django.contrib.messages',
+    "users",
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -69,8 +79,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "leos_digitization.wsgi.application"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
-
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -115,9 +126,11 @@ STATIC_URL = "static/"
 # Add this section to include the common static directory
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    BASE_DIR / "assets",
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# AUTH_USER_MODEL = 'users.CustomUser'

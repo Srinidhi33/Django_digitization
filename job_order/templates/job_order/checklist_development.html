@@ -1,0 +1,8 @@
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+
+    <center><h3>Currently we offer services for Software Code Walkthrough only.<br> The checklist Pages for '<b>{{context.requirement}}</b>' is still under Development</h3>
+    <br><br><b>Redirect to REVIEW OF REQUIREMENTS / JOB ALLOTMENT FORM <a href="{% url 'swt3' job_order_number=context.job_order_number %}"><u>here</u></a></b></center>
+
+{% endblock content %}

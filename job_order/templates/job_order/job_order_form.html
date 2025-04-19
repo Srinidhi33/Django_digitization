@@ -1,0 +1,339 @@
+
+{% extends "job_order/base.html" %}
+    {% load static %}
+    {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+        <form id="job_Order_Form" action="{% url 'save_first_page' %}" method="post">
+
+        {% csrf_token %}
+        <div class="job-container" style="margin-bottom:40px;">
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-JO-01-01-00</b><br>
+                JOB ORDER GIVEN TO LQAD(ELEC), SRQG, LEOS
+            </div>
+            <table class="table-job" style="margin-bottom: 10px;">
+                
+                    <tr>
+                        <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                        <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> /<b id="year" ></b>  / </td>
+                        <td class="td-job" style="text-align: center;">Date: <b id="date"></b>
+                        </td><input type="hidden" name="date" value="{{ current_date | date:'d/m/Y' }}"><!-- Date (from server) -->
+                    </tr>
+                </>
+            </table>
+            <table class="table-job" style="margin-bottom: 10px;">
+                
+                    <tr>
+                        <td class="td-job" rowspan="3" style="border-right: 2px solid black;text-align:center">
+                            Requirement<br> (Please tick appropriate column)</td>
+                        <td class="td-job"><input type="checkbox" name="requirement" value="Test & Evaluation"
+                                class="checkbox parent-checkbox" id="test-eval"> Test &amp; Evaluation</td>
+                        <td class="td-job"><input type="checkbox" name="requirement" value="Circuit Schematic Clearance"
+                                class="checkbox parent-checkbox" id="circuit"> Circuit Schematic Clearance</td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"><input type="checkbox" name="requirement" value="Reliability Analysis"
+                                class="checkbox parent-checkbox" id="reliability"> Reliability Analysis</td>
+                        <td class="td-job"><input type="checkbox" name="requirement" value="PA Plan Generation"
+                                class="checkbox parent-checkbox" id="pa-plan"> PA Plan Generation</td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"><input type="checkbox" name="requirement" value="FPGA CWT"
+                                class="checkbox parent-checkbox" id="fpga"> FPGA CWT</td>
+                        <td class="td-job"><input type="checkbox" name="requirement" value="Software CWT"
+                                class="checkbox parent-checkbox" id="software"> Software CWT</td>
+                    </tr>
+                </>
+            </table>
+
+            <table class="table-job" style="margin-bottom: 10px;">
+                
+                    <tr>
+                        <td class="td-job"=""
+                            style="text-align: center  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                            Project</td>
+                        <td class="td-job"><input type="text" name="project" id="project" style="width: 95%; height:33px;"></td>
+                        <td class="td-job" style="border: 1px solid black;">
+                            Sensor: <input type="text" name="sensor" style="width: 74.7%;height:33px;" id="sensor">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"=""
+                            style="text-align: center;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                            <b>Exact Nature of Work</b>
+                        </td>
+                        <td class="td-job" colspan="2" style="border-top: 1px solid black;"><input type="text"
+                                name="enow" style="width: 98%;height: 33px;" id="enow">
+                        </td>
+                    </tr>
+                </>
+            </table>
+
+            <table class="table-job" style="margin-bottom: 10px;">
+                
+                    <tr>
+                        <th class="th-job"></th>
+                        <th class="th-job" style="text-align: center;">Availability of Inputs</th>
+                        <th class="th-job"></th>
+                    </tr>
+                    <tr>
+                        <td class="td-job" rowspan="3"><b>Test &amp; Evaluation</b></td>
+                        <td class="td-job" style="text-align: justify;">1. Format for Test Readiness Review
+                            <b>GEN-LQAD-ELEC-CL-05.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="Readiness_review"
+                                class="checkbox child-checkbox test-eval" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job">2. Checklist for Test &amp; Evaluation of Simulators
+                            <b>GEN-LQAD-ELEC-CL-07.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="simulators"
+                                class="checkbox child-checkbox test-eval" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" >    3. Checklist for Test &amp; Evaluation of Checkout Systems
+                            <b>GEN-LQAD-ELEC-CL-08.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="checkout_sys"
+                                class="checkbox child-checkbox test-eval" disabled></td>
+                                
+                    </tr>
+                    <tr>
+                        <td class="td-job" rowspan="2"><b>Reliability Analysis</b></td>
+                        <td class="td-job">1."Checklist Requirements for performing Reliability Analysis:"
+                            <b>GEN-LQAD-ELEC-CL-02.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="reliability_analysis"
+                                class="checkbox child-checkbox reliability" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job">2. Electrical Configuration Document</td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="elec_config_doc"
+                                class="checkbox child-checkbox reliability" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"><b>Circuit Schematic Clearance</b></td>
+                        <td class="td-job">1."Checklist for initaing Circuit Schematic Clearance":<b> GEN-LQAD-ELEC-CL-03.01-00</b></td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="initate_circuit"
+                                class="checkbox child-checkbox circuit" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"><b>PA Plan Generation</b></td>
+                        <td class="td-job">1."Checklist For Inputs Required for Generating Product
+                            Assurance Plan": <b>GEN-LQAD-ELEC-CL-04.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="ip_req"
+                                class="checkbox child-checkbox pa-plan" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"><b>FPGA Code  Walkthrough</b></td>
+                        <td class="td-job">1."Checklist for initiating FPGA Code Walkthrough": <b>GEN-LQAD-ELEC-CL-09.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="fpga_cwt"
+                                class="checkbox child-checkbox fpga" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job"><b>Software Code  Walkthrough</b></td>
+                        <td class="td-job">1."Checklist for initiating Software Code Walk through":
+                            <b>GEN-LQAD-ELEC-CL-10.01-00</b>
+                        </td>
+                        <td class="td-job"><input type="checkbox" name="selected_inputs" value="sw_cwt"
+                                class="checkbox child-checkbox software" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" style="text-align: center;"><b>Required by (date):</b></td>
+                        <td class="td-job"><input type="date" name="required_by_date" id="required-date" class="input-box" ></td>
+                    </tr>
+                </>
+            </table>
+
+            <table class="table-job">
+                
+                    <tr>
+                        <td class="td-job" style="text-align: center;"><b>Request Provided by:</b></td>
+                        <td class="td-job" style="text-align: center;">Digital Sign</td>
+                        <td class="td-job" style="text-align: center;"><b>Request authorized by:</b></td>
+                        <td class="td-job" style="text-align: center;">Digital Sign</td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" colspan="1">
+                            <input type="text" name="request_provided_by" id="request_provided_by" list="emp_list" style="width: 97%; height:33px;"><datalist id="emp_list"></datalist>
+                        </td>
+                        <td class="td-job"></td>
+                        <td class="td-job" colspan="1"><input type="text" name="request_authorized_by" id="request_authorized_by" list="emp_list"  style="width: 97%; height:33px;"><datalist id="emp_list"></datalist></td>
+                    </tr>
+                </>
+            </table>
+            <br>
+            <center>
+                <button class="submit-btn" type="submit" onclick="return validateForm()">Submit</button>
+                <button class="clear-btn" type="button" onclick="clearForm()">Clear</button>
+            </center>
+        </div>
+
+
+        <script>
+            var today=new Date();
+            var date=today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear();
+            document.getElementById("date").innerText=date;
+            document.getElementById("year").innerText=today.getFullYear();
+
+            
+            document.addEventListener("DOMContentLoaded", function () {
+                
+
+                function parseCSV(csvText){
+                    let rows=csvText.split("\n").map(row=>row.trim()).filter(row=>row);
+                    let headers=rows.shift().split(",");
+                    return rows.map(row => {
+                    let values = row.split(",");
+                    let obj = {};
+                    headers.forEach((header, index) => {
+                        obj[header.trim()] = values[index] ? values[index].trim() : "";
+                    });
+
+                    return obj;
+        });
+    }
+
+            fetch("/static/job_order/emp_details.csv")
+            .then(response => response.text())
+            .then(data => {
+            let parsedData = parseCSV(data);
+            let datalist = document.getElementById("emp_list");
+
+            parsedData.forEach(user => {
+                let option = document.createElement("option");
+                option.value = `${user.Name} (${user.Staff_ID})`;  
+                datalist.appendChild(option);
+            });
+        });
+
+
+
+                let parentCheckboxes = document.querySelectorAll(".parent-checkbox");
+
+                parentCheckboxes.forEach(function (parent) {
+                    parent.addEventListener("change", function () {
+                        // Uncheck and disable all child checkboxes before enabling the selected category
+                        document.querySelectorAll(".child-checkbox").forEach(child => {
+                            child.checked = false; // Uncheck all child checkboxes
+                            child.disabled = true; // Disable all child checkboxes
+                        });
+
+                        // Uncheck all other parent checkboxes
+                        parentCheckboxes.forEach(otherParent => {
+                            if (otherParent !== this) {
+                                otherParent.checked = false;
+                            }
+                        });
+
+                        // Enable respective child checkboxes if the parent is checked
+                        let category = this.id;
+                        let childCheckboxes = document.querySelectorAll(`.child-checkbox.${category}`);
+
+                        if (this.checked) {
+                            childCheckboxes.forEach(cb => cb.disabled = false);
+                        }
+                    });
+                });
+                // Set min & max dates for "Required by (date)"
+                let requiredDateInput = document.getElementById("required-date");
+                let minDate = new Date();
+                let maxDate = new Date();
+                minDate.setDate(today.getDate() + 1);
+
+                requiredDateInput.min = minDate.toISOString().split("T")[0];
+            });
+
+            function validateForm() {
+                let atLeastOneChecked = false;
+                let atLeastOneChildChecked = false;
+                let project=document.getElementById('project').value.trim();
+                let sensor=document.getElementById('sensor').value.trim();
+                let enow=document.getElementById('enow').value.trim();
+                let req_prov=document.getElementById('request_provided_by').value.trim();
+                let req_auth=document.getElementById('request_authorized_by').value.trim();
+                document.querySelectorAll(".parent-checkbox").forEach(parent => {
+                    if (parent.checked) {
+                        atLeastOneChecked = true;
+                        let category = parent.id;
+                        document.querySelectorAll(`.child-checkbox.${category}`).forEach(child => {
+                            if (child.checked) {
+                                atLeastOneChildChecked = true;
+                            }
+                        });
+                    }
+                });
+                if (!atLeastOneChecked) {
+                    alert("Please select at least one requirement.");
+                    return false;
+                }
+                if (project===''){
+                    alert('Please enter Project details');
+                    return false;
+                }
+                if (sensor===''){
+                    alert('Please enter Sensor details');
+                    return false;
+                }
+                if (enow===''){
+                    alert('Please Describe Exact Nature of Work');
+                    return false;
+                }
+
+                
+
+                if (!atLeastOneChildChecked) {
+                    alert("Please select at least one input.");
+                    return false;
+                }
+
+
+                let requiredDateInput = document.getElementById("required-date").value;
+                if (!requiredDateInput) {
+                    alert("Please select a valid 'Required by' date.");
+                    return false;
+                }
+                if (req_prov===''){
+                    alert('Please enter who is requesting for service.');
+                    return false;
+                }
+
+                if (req_auth===''){
+                    alert('Please enter who is the Authorizing Authority.   ');
+                    return false;
+                }
+
+                let selectedDate = new Date(requiredDateInput);
+                let today = new Date();
+                let minDate = new Date();
+                let maxDate = new Date();
+                minDate.setDate(today.getDate() + 1);
+                maxDate.setMonth(today.getMonth() + 2);
+
+                if (selectedDate < minDate) {
+                    alert("Date must be at least 1 day in the future .");
+                    return false;
+                }
+
+                alert("Form submitted successfully!");
+                return true;
+            }
+
+            function clearForm() {
+                document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
+                    checkbox.checked = false;
+                    checkbox.disabled = checkbox.classList.contains("child-checkbox");
+                });
+
+                document.querySelectorAll("input[type='text'], input[type='date']").forEach(input => {
+                   if (input.type === 'text' && !input.disabled ) input.value = '';
+        });
+            }
+        </script>
+
+
+    </form>
+    {% endblock content %}

@@ -1,0 +1,23 @@
+
+{% extends "job_order/base.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+    <form id="get_job_Order_Form" action="{% url 'get_num' %}" method="post">
+        {% csrf_token %}
+        <div class="job-container" style="margin-top:0px; border:2px solid black;padding:15px;">
+            <center>
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">Oops! Looks like you've entered wrong JOB ORDER Number</b><br>
+                Please enter correct JOB ORDER Number <a href="{% url 'get_num' %}"><u>here</u></a>
+
+            </div>
+            <table class="table-get" style="margin-bottom: 10px;">
+                <tr>
+                    
+                </tr>
+            </table>
+        </center>
+        </div>
+    </form>
+{% endblock content %}

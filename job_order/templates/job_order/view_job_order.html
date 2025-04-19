@@ -1,0 +1,143 @@
+
+{% extends "job_order/base.html" %}
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+
+        {% csrf_token %}
+        <div class="job-container">
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-JO-01-01-00</b><br>
+                JOB ORDER GIVEN TO LQAD(ELEC), SRQG, LEOS
+            </div>
+                <table class="table-job" style="margin-bottom: 10px;">
+                <tr>
+                    <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                    <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> / <b>{{record.year}}</b> / {{record.job_order_number}} </td>
+                    <td class="td-job" style="text-align: center;">Date: <b>{{record.date}}</span></b></td>
+                    <input type="hidden" name="date" value="{{ current_date }}">
+                </tr>
+            </table>
+    
+            <table class="table-job" style="margin-bottom: 10px;">
+                <tr>
+                    <td class="td-job" rowspan="3"style="border-right: 2px solid black;text-align:center;">Requirement<br> (Please tick appropriate column)</td>
+                    <td class="td-job"><input type="checkbox" name="requirement"  class="checkbox parent-checkbox" {% if "Test & Evaluation" in record.requirement %} checked {% endif %} disabled> Test & Evaluation</td>
+                    <td class="td-job"><input type="checkbox" name="requirement"  class="checkbox parent-checkbox" {% if "Circuit Schematic Clearance" in record.requirement %} checked {% endif %} disabled> Circuit Schematic Clearance</td>
+                </tr>
+                <tr>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox parent-checkbox" {% if "Reliability Analysis" in record.requirement %} checked {% endif %} disabled> Reliability Analysis</td>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox parent-checkbox" {% if "PA Plan Generation" in record.requirement %} checked {% endif %} disabled> PA Plan Generation</td>
+                </tr>
+                <tr>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox parent-checkbox" {% if "FPGA CWT" in record.requirement %} checked {% endif %} disabled> FPGA CWT</td>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox parent-checkbox" {% if "Software CWT" in record.requirement %} checked {% endif %} disabled> Software CWT</td>
+                </tr>
+            </table>
+            <table class="table-job" style="margin-bottom: 10px;">
+                <tr>
+                    <td class="td-job"
+                        style="text-align: center   ;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                        Project</td>
+                    <td class="td-job"><input type="text" name="project" style="width: 95%; height:33px;" value="{{record.project}}" disabled></td>
+                    <td class="td-job" style="border: 1px solid black;">
+                        Sensor: <input type="text" name="sensor" value="{{record.sensor}}" style="width: 74.7%;height:33px;" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-job"
+                        style="text-align: center;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                        <b>Exact Nature of Work</b>
+                    </td>
+                    <td class="td-job" colspan="2"  style="border-top: 1px solid black;"><input type="text" name="enow"
+                            style="width: 98%;height: 33px;" value="{{record.enow}}" disabled>
+                    </td>
+                </tr>
+            </table>
+           
+    
+            <table class="table-job" style="margin-bottom: 10px;" >
+                <tr>
+                    <th class="th-job"></th>
+                    <th class="th-job" style="text-align: center;">Availability of Inputs</th>
+                    <th class="th-job"></th>
+                </tr>
+                <tr>
+                    <td class="td-job" rowspan="3"><b>Test & Evaluation</b></td>
+                    <td class="td-job">1. Format for Test Readiness Review <b>GEN-LQAD-ELEC-CL-05.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox child-checkbox test-eval" {% if "Readiness_review" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr>
+                    <td class="td-job">2. Checklist for Test & Evaluation of Simulators <b>GEN-LQAD-ELEC-CL-07.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox child-checkbox test-eval" {% if "simulators" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr>
+                    <td class="td-job">3. Checklist for Test & Evaluation of Checkout Systems <b>GEN-LQAD-ELEC-CL-08.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="requirement" class="checkbox child-checkbox test-eval" {% if "checkout_sys" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr >
+                    <td class="td-job" rowspan="2"><b>Reliability Analysis</b></td>
+                    <td class="td-job">1."Checklist Requirements for performing Reliability Analysis:"
+                        <b>GEN-LQAD-ELEC-CL-02.01-00</b>
+                    </td>
+                    <td class="td-job" ><input type="checkbox" name="selected_inputs" class="checkbox child-checkbox reliability" {% if "reliability_analysis" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr >
+                    <td class="td-job" >2. Electrical Configuration Document</td>
+                    <td class="td-job" ><input type="checkbox" name="selected_inputs"  class="checkbox child-checkbox reliability" {% if "elec_config_doc" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr>
+                    <td class="td-job" ><b>Circuit Schematic Clearance</b></td>
+                    <td class="td-job">1."Checklist for initaing Circuit Schematic
+                        Clearance":<b> GEN-LQAD-ELEC-CL-03.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="selected_inputs"  class="checkbox child-checkbox reliability" {% if "initate_circuit" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr>
+                    <td class="td-job" ><b>PA Plan Generation</b></td>
+                    <td class="td-job">1."Checklist For Inputs Required for Generating Product Assurance
+                        Plan": <b>GEN-LQAD-ELEC-CL-04.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="selected_inputs"  class="checkbox child-checkbox pa-plan" {% if "ip_req" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr>
+                    <td class="td-job" ><b>FPGA Code Walkthrough</b></td>
+                    <td class="td-job">1."Checklist for initiating FPGA Code Walkthrough": <b>GEN-LQAD-ELEC-CL-09.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="selected_inputs"  class="checkbox child-checkbox fpga" {% if "fpga_cwt" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+                <tr>
+                    <td class="td-job" ><b>Software Code Walkthrough</b></td>
+                    <td class="td-job">1."Checklist for initiating Software Code Walk through":
+                        <b>GEN-LQAD-ELEC-CL-10.01-00</b></td>
+                    <td class="td-job"><input type="checkbox" name="selected_inputs" class="checkbox child-checkbox software" {% if "sw_cwt" in record.selected_inputs %} checked {% endif %} disabled></td>
+                </tr>
+    
+                <tr>
+                    <td class="td-job" style="text-align: center;"><b>Required by (date):</b></td>
+                    <td class="td-job" ><input type="date" name="required_by_date" value="{{ record.required_by_date }}"  disabled></td>
+                </tr>
+                
+                
+            </table>
+
+            <table class="table-job">
+                <tr>
+                    <td class="td-job" style="text-align: center;"><b>Request Provided by:</td></b>
+                    <td class="td-job" style="text-align: center;">Digital Sign</td>
+                    <td class="td-job" style="text-align: center;"><b>Request authorized by:</td></b>
+                    <td class="td-job" style="text-align: center;">Digital Sign</td>
+                </tr>
+                <tr>
+                    <td class="td-job" colspan="1"><input type="text"  name="request_provided_by" style="width: 97%; height:33px;"value="{{record.request_provided_by}}" disabled></td>
+                    <td class="td-job"></td>
+                    <td class="td-job" colspan="1"><input type="text" name="request_authorized_by" style="width: 97%; height:33px;"value="{{record.request_authorized_by}}" disabled></td>
+                </tr>
+            </table>
+            <br>
+            
+            <center>{% if page_obj.has_previous %} <a href="?page={{page_obj.previous_page_number}}">  <- Prev  </a>{% endif %} &nbsp;&nbsp;&nbsp;&nbsp;  {% if page_obj.has_next %} <a href="?page={{page_obj.next_page_number}}"> Next -> </a>{% endif %}
+            </center>
+
+
+        </div>
+            
+{% endblock content %}

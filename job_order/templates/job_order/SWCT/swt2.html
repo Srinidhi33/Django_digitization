@@ -1,0 +1,279 @@
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+<form id="swt2-form" action="{% url 'swt3' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="job-container" style="margin-bottom:40px;">
+        <div class="job-header" style="padding-bottom: 10px;">
+            <b style="font-size: medium;">GEN-LQAD-ELEC-CL-12-01-00<br>
+                LQAD(ELEC): CHECKLIST FOR INITIATING SOFTWARE CODE WALKTHROUGH</b>
+        </div>
+        <table class="table-job" style="margin-bottom: 10px;">
+            <tr>
+                <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> / <b
+                        id="year"></b> / </td>
+                <td class="td-job" style="text-align: center;">Date: <b  id="date"></b>
+                </td><input type="hidden" name="current_date" value="{{ current_date | date:'d/m/Y'}}">
+            </tr>
+        </table>
+        <table class="table-job" style="margin-bottom: 10px;">
+            <tr>
+                <td class="td-job"
+                    style="text-align: center  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                    <b>PROJECT:</b>
+                </td>
+                <td style="padding:0px 0px 0px 5px;border :1px solid black"><input type="text" readonly name="project"
+                        id="project" value="Project ABC" style="width: 92%; height:33px;"></td>
+                <td class="td-job" style="border: 1px solid black;text-align:center"><b>SENSOR:</b> </td>
+                <td style="padding:0px 0px 0px 5px"><input type="text"  readonly name="sensor" id="sensor" value="SENSOR K"
+                        style="width: 92.7%;height:33px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="td-job"
+                    style="text-align: center  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                    <b>PACKAGE:</b>
+                </td>
+                <td style="padding:0px 0px 0px 5px"><input type="text" value="Not some package"  name="package" id="package" style="width: 92%; height:33px;"></td>
+                <td class="td-job" style="border: 1px solid black;text-align:center"><b>VERSION NO:</b> </td>
+                <td style="padding:0px 0px 0px 5px;border:1px solid black"><input type="text" name="version"
+                        style="width: 92.7%;height:33px;" id="version"></td>
+            </tr>
+        </table>
+        <table class="table-job" style="margin-bottom: 10px;">
+            <tr>
+                <th class="th-job" style="text-align:center">Sl. no.</th>
+                <th class="th-job" style="text-align: center;" colspan="2">Parameter</th>
+                <th class="th-job" style="text-align: center;">Availability</th>
+                <th class="th-job" style="text-align: center;">Remarks</th>
+                <th class="th-job" style="text-align: center;">Upload Documents</th>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">1.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Software Requirements Document</b></td>
+                <td class="td-job" style="text-align:center;">
+                    <input type="radio" name="availability1" id="yes1" style="display:none;" value="Yes">
+                    <label for="yes1" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability1" id="no1" value="No">
+                    <label for="no1" class="radio-btn-no">No</label>
+                </td>
+                <td class="td-job"><textarea id="sw_req_doc_remarks" name="sw_req_doc_remarks" rows="3" cols="22"
+                        placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn" for="sw_req_doc"
+                        style="display: inline-block;">Browse</label><input type="file" name="1.sw_req_doc"
+                        style="display:none;" id="sw_req_doc" multiple /><br><span id="fileCount">No Files
+                        Uploaded.</span></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">2.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Software Design Document</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability2" id="yes2" style="display:none;" value="Yes">
+                    <label for="yes2" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability2" id="no2" value="No">
+                    <label for="no2" class="radio-btn-no">No</label></td>
+                <td class="td-job"><textarea id="sw_des_doc_remarks" name="sw_des_doc_remarks" rows="3" cols="22"
+                        placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn"
+                        for="sw_des_doc">Browse</label><input type="file" name="2.sw_des_doc" style="display:none;"
+                        id="sw_des_doc" multiple /><br><span id="fileCount">No Files Uploaded.</span></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center" rowspan="2">3.</td>
+                <td class="td-job" style="text-align: center" rowspan="2"><b>Source Code</b></td>
+                <td class="td-job" style="width: 378px;"><b>Baseline version </b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability3" id="yes3" style="display:none;" value="Yes">
+                    <label for="yes3" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability3" id="no3" value="No">
+                    <label for="no3" class="radio-btn-no">No</label></td>
+                <td class="td-job"><textarea id="src_base_remarks" name="src_base_doc_remarks" rows="3" cols="22"placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn"
+                        for="src_base_file">Browse</label><input type="file" name="3.src_base_file" style="display:none;"
+                        id="src_base_file" multiple /><br><span id="fileCount">No Files Uploaded.</span></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="width: 378px;"><b>Current version</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability4" id="yes4" style="display:none;" value="Yes">
+                    <label for="yes4" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability4" id="no4" value="No">
+                    <label for="no4" class="radio-btn-no">No</label></td>
+                <td class="td-job"><textarea id="src_curr_remarks" name="src_curr_remarks" rows="3" cols="22"
+                        placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn"
+                        for="src_curr_file">Browse</label><input type="file" name="4.src_curr_file" style="display:none;"
+                        id="src_curr_file" multiple /><br><span id="fileCount">No Files Uploaded.</span></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">4.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Test Cases and Report</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability5" id="yes5" style="display:none;" value="Yes">
+                    <label for="yes5" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability5" id="no5" value="No">
+                    <label for="no5" class="radio-btn-no">No</label></td>
+                <td class="td-job"><textarea id="tc_and_rep_remarks" name="tc_and_rep_remarks" rows="3" cols="22"
+                        placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn"
+                        for="tc_and_rep_doc">Browse</label><input type="file" name="5.tc_and_rep_doc" style="display:none;"
+                        id="tc_and_rep_doc" multiple /><br><span id="fileCount">No Files Uploaded.</span></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">5.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>SSDRC / SSRB Commitee minutes and closeouts</b>
+                </td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability6" id="yes6" style="display:none;" value="Yes">
+                    <label for="yes6" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability6" id="no6" value="No">
+                    <label for="no6" class="radio-btn-no">No</label></td>
+                <td class="td-job"><textarea id="ssrb_or_ssdrc_remarks" name="ssrb_or_ssdrc_remarks" rows="3" cols="22"
+                        placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn"
+                        for="ssrb_or_ssdrc_doc">Browse</label><input type="file" name="6.ssrb_or_ssdrc_doc"
+                        style="display:none;" id="ssrb_or_ssdrc_doc" multiple /><br><span id="fileCount">No Files
+                        Uploaded.</span></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">6.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Additional Details if any</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability7" id="yes7" style="display:none;" value="Yes">
+                    <label for="yes7" class="radio-btn-yes">Yes</label>
+                    <input type="radio" style="display:none;" name="availability7" id="no7" value="No">
+                    <label for="no7" class="radio-btn-no">No</label></td>
+                <td class="td-job"><textarea id="additional_remarks" name="additional_remarks" rows="3" cols="22"
+                        placeholder="Remarks"></textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;"><label class="browse-btn"
+                        for="additional_doc">Browse</label><input type="file" name="7.additional_doc" style="display:none;"
+                        id="additional_doc" multiple /><br><span id="fileCount">No Files Uploaded.</span></td>
+            </tr>
+        </table>
+        <table class="table-job">
+            <tr>
+                <td class="td-job" style="text-align: center;"><b>Details Provided by:</b></td>
+                <td class="td-job" style="text-align: center;">Digital Sign</td>
+                <td class="td-job" style="text-align: center;"><b>Details Approved by:</b></td>
+                <td class="td-job" style="text-align: center;">Digital Sign</td>
+            </tr>
+            <tr>
+                <td class="td-job" colspan="1"><input type="text" readonly name="request_provided_by"
+                        style="width: 97%; height:33px;" value="Person 1"></td>
+                <td class="td-job"></td>
+                <td class="td-job" colspan="1"><input type="text" readonly name="request_authorized_by"
+                        style="width: 97%; height:33px;" value="Person 2"></td>
+            </tr>
+        </table>
+        </br>
+        <center>
+            <button class="submit-btn" type="submit" onclick="return validateForm()">Submit</button>
+            <button class="clear-btn" id="clear-btn" type="button" onclick="clearForm()">Clear</button>
+        </center>
+    </div>
+</form>
+<script>
+        let today=new Date();
+        document.getElementById("date").innerText=`${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`; 
+        document.getElementById("year").innerText = new Date().getFullYear();
+        
+        document.getElementById("swt2-form").addEventListener('change', function(event) {
+            if (event.target.matches('input[type="file"]')) {
+                let count = event.target.files.length;
+                let span = event.target.nextElementSibling?.nextElementSibling;
+                if (span && span.tagName === "SPAN") {
+                    span.textContent = count > 0 ? `${count} files Uploaded` : "No files Uploaded.";
+                }
+            }
+        });
+
+        
+        function validateForm() {
+            let allRadiosChecked = true;
+            let allTextareasFilled = true;
+            let allFilesUploaded = true;
+            let firstEmptyTextarea = null;
+            let package = document.getElementById("package").value.trim();
+            let version = document.getElementById("version").value.trim();
+        
+            // Check if each radio button group has at least one checked option
+            let radioGroups = new Set();
+            document.querySelectorAll("input[type='radio']").forEach((input) => {
+                radioGroups.add(input.name);
+            });
+        
+            radioGroups.forEach((group) => {
+                let radios = document.querySelectorAll(`input[name='${group}']`);
+                let checkedRadio = Array.from(radios).find(radio => radio.checked);
+        
+                if (!checkedRadio) {
+                    allRadiosChecked = false;
+                } else if (checkedRadio.value === "Yes") {
+                    // Find the file input within the same row as the selected "Yes"
+                    let fileInput = checkedRadio.closest("tr").querySelector("input[type='file']");
+        
+                    if (!fileInput || fileInput.files.length === 0) {
+                        allFilesUploaded = false;
+                    }
+                }
+            });
+        
+            // Check if all textareas are filled
+            document.querySelectorAll("textarea").forEach((textarea) => {
+                if (textarea.value.trim() === '') {
+                    allTextareasFilled = false;
+                    if (!firstEmptyTextarea) {
+                        firstEmptyTextarea = textarea; // Store the first empty textarea
+                    }
+                }
+            });
+        
+            // Final validation checks
+            if (!allRadiosChecked) {
+                alert("Please check all the availability options.");
+                return false;
+            }
+            if (!allFilesUploaded) {
+                alert("If 'Yes' is selected, you must upload at least one file in the same row.");
+                return false;
+            }
+            if (!allTextareasFilled) {
+                alert("Please enter remarks in all fields.");
+                firstEmptyTextarea.focus();  // Refocus on the first empty textarea
+                return false;
+            }
+            if (package === '') {
+                alert("Please enter package details.");
+                return false;
+            }
+            if (version === '') {
+                alert("Please enter version details.");
+                return false;
+            }
+        
+            alert("Form submitted successfully!");
+            return true;
+        }
+                
+        function clearForm() {
+            document.querySelectorAll("#swt2-form input[type='text'], #swt2-form input[type='radio'], #swt2-form textarea").forEach(input => {
+                if (input.type === 'text' && !input.disabled) input.value = '';
+                if (input.type === 'radio') input.checked = false;
+                if (input.tagName === 'TEXTAREA') input.value = '';
+            });
+        
+            // Reset file inputs by replacing them with clones
+            document.querySelectorAll("#swt2-form input[type='file']").forEach(fileInput => {
+                let newFileInput = fileInput.cloneNode(true);
+                fileInput.parentNode.replaceChild(newFileInput, fileInput);
+            });
+        
+            // Reset file upload text display
+            document.querySelectorAll("#swt2-form span").forEach(span => {
+                span.textContent = "No Files Uploaded.";
+            });
+        }
+        
+    </script>
+
+
+
+{% endblock content %}
+
+

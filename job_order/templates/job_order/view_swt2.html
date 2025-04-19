@@ -1,0 +1,205 @@
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+{% comment %} {{files_by_category.1_Software_Requirement_Document | default:"No files came"}} {% endcomment %}
+    {% csrf_token %}
+    <div class="job-container" style="margin-bottom:40px;">
+        <div class="job-header" style="padding-bottom: 10px;">
+            <b style="font-size: medium;">GEN-LQAD-ELEC-CL-12-01-00<br>
+                LQAD(ELEC): CHECKLIST FOR INITIATING SOFTWARE CODE WALKTHROUGH</b>
+        </div>
+        <table class="table-job" style="margin-bottom: 10px;">
+            <tr>
+                <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> /<b id="year" > {{record.year}}</b>  / {{record.job_order_number.job_order_number}} </b> </td>
+                <td class="td-job" style="text-align: center;">Date: <b  id="date">{{record.date}}</b></td>
+            </tr>
+        </table>
+        <table class="table-job" style="margin-bottom: 10px;">
+            <tr>
+                <td class="td-job"
+                    style="text-align: center  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                    <b>PROJECT:</b>
+                </td>
+                <td style="padding:0px 0px 0px 5px;border :1px solid black"><input type="text" disabled name="project"
+                        id="project" value="{{record.job_order_number.project}}" style="width: 92%; height:33px;" disabled></td>
+                <td class="td-job" style="border: 1px solid black;text-align:center"><b>SUBSYSTEM:</b> </td>
+                <td style="padding:0px 0px 0px 5px"><input type="text" disabled  value={{record.subsystem}}  name="subsystem" id="subsystem" 
+                        style="width: 92.7%;height:33px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="td-job"
+                    style="text-align: center  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 2px solid black;">
+                    <b>PACKAGE:</b>
+                </td>
+                <td style="padding:0px 0px 0px 5px"><input type="text" disabled  value={{record.package}}   name="package" id="package" style="width: 92%; height:33px;"></td>
+                <td class="td-job" style="border: 1px solid black;text-align:center"><b>VERSION NO:</b> </td>
+                <td style="padding:0px 0px 0px 5px;border:1px solid black"><input type="text" value={{record.version}}  disabled name="version"
+                        style="width: 92.7%;height:33px;" id="version"></td>
+            </tr>
+        </table>
+        <table class="table-job" style="margin-bottom: 10px;">
+            <tr>
+                <th class="th-job" style="text-align:center">Sl. no.</th>
+                <th class="th-job" style="text-align: center;" colspan="2">Parameter</th>
+                <th class="th-job" style="text-align: center;">Availability</th>
+                <th class="th-job" style="text-align: center;">Remarks</th>
+                <th class="th-job" style="text-align: center;">Upload Documents</th>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">1.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Software Requirements Document</b></td>
+                <td class="td-job" style="text-align:center;">
+                    <input type="radio" name="availability1" id="yes1"style="display:none;"  {% if True == record.availability1 %} checked {% endif %} disabled >
+                    <label for="yes1" class="radio-btn-yes-disabled" disabled>Yes</label>
+                    <input type="radio" style="display:none;" name="availability1" id="no1" {% if False == record.availability1 %} checked {% endif %} disabled>
+                    <label for="no1" class="radio-btn-no-disabled"disabled>No</label>
+                </td>
+                <td class="td-job"><textarea id="sw_req_doc_remarks" name="sw_req_doc_remarks"  rows="3" cols="22"
+                        disabled>{{record.sw_req_doc_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">                
+
+                    {% if files_by_category.1_Software_Requirement_Document %}
+                        {% for file in files_by_category.1_Software_Requirement_Document %}
+                           <a href ="{{file.url }}"  style="text-align:center" download>{{file.name}}</a><br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}
+
+                </td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">2.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Software Design Document</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability2" id="yes2" style="display:none;"  {% if True == record.availability2 %} checked {% endif %} disabled>
+                    <label for="yes2" class="radio-btn-yes-disabled">Yes</label>
+                    <input type="radio" style="display:none;" name="availability2" id="no2" {% if False == record.availability2 %} checked {% endif %} disabled>
+                    <label for="no2" class="radio-btn-no-disabled">No</label></td>
+                <td class="td-job"><textarea id="sw_des_doc_remarks" name="sw_des_doc_remarks"   rows="3" cols="22"
+                        disabled>{{record.sw_des_doc_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">
+                    {% if files_by_category.2_Software_Design_Document %}
+                        {% for file in files_by_category.2_Software_Design_Document %}
+                            <a href ="{{file.url }}"  style="text-align:center" download>{{file.name}}</a><br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}
+</td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center" rowspan="2">3.</td>
+                <td class="td-job" style="text-align: center" rowspan="2"><b>Source Code</b></td>
+                <td class="td-job" style="width: 378px;"><b>Baseline version </b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability3_1" id="yes3" style="display:none;"  {% if True == record.availability3_1 %} checked {% endif %} disabled>
+                    <label for="yes3" class="radio-btn-yes-disabled">Yes</label>
+                    <input type="radio" style="display:none;" name="availability3_1" id="no3" {% if False == record.availability3_1 %} checked {% endif %} disabled>
+                    <label for="no3" class="radio-btn-no-disabled">No</label></td>
+                <td class="td-job"><textarea id="src_base_remarks" name="src_base_doc_remarks"   rows="3" cols="22"disabled>{{record.src_base_doc_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">
+                    {% if files_by_category.3_1_Source_Code_Baseline_Version_Files %}
+                        {% for file in files_by_category.3_1_Source_Code_Baseline_Version_Files %}
+                            <a href ="{{file.url }}"  style="text-align:center" download>{{file.name }}</a><br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}</td>
+            </tr>
+            <tr>
+                <td class="td-job" style="width: 378px;"><b>Current version</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability3_2" id="yes4" style="display:none;"  {% if True == record.availability3_2 %} checked {% endif %} disabled>
+                    <label for="yes4" class="radio-btn-yes-disabled">Yes</label>
+                    <input type="radio" style="display:none;" name="availability3_2" id="no4" {% if False == record.availability3_2 %} checked {% endif %} disabled>
+                    <label for="no4" class="radio-btn-no-disabled">No</label></td>
+                <td class="td-job"><textarea id="src_curr_remarks" name="src_curr_remarks" rows="3" cols="22" 
+                        disabled>{{record.src_curr_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">
+                    {% if files_by_category.3_2_Source_Code_Current_Version_Files %}
+                        {% for file in files_by_category.3_2_Source_Code_Current_Version_Files %}
+                            <a href ="{{file.url }}"  style="text-align:center" download>{{file.name }}</a><br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}</td></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">4.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Test Cases and Report</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability4" id="yes5" style="display:none;"  {% if True == record.availability4 %} checked {% endif %} disabled>
+                    <label for="yes5" class="radio-btn-yes-disabled" >Yes</label>
+                    <input type="radio" style="display:none;" name="availability4" id="no5" {% if False == record.availability4 %} checked {% endif %} disabled>
+                    <label for="no5" class="radio-btn-no-disabled">No</label></td>
+                <td class="td-job"><textarea id="tc_and_rep_remarks" name="tc_and_rep_remarks" rows="3" cols="22" 
+                        disabled>{{record.tc_and_rep_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">
+                    {% if files_by_category.4_Test_Cases_and_Report_Files %}
+                        {% for file in files_by_category.4_Test_Cases_and_Report_Files %}
+                            <a href ="{{file.url }}"  style="text-align:center" download>{{file.name }}</a></br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}</td></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">5.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>SSDRC / SSRB Commitee minutes and closeouts</b>
+                </td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability5" id="yes6" style="display:none;"  {% if True == record.availability5 %} checked {% endif %} disabled>
+                    <label for="yes6" class="radio-btn-yes-disabled">Yes</label>
+                    <input type="radio" style="display:none;" name="availability5" id="no6" {% if False == record.availability5 %} checked {% endif %} disabled>
+                    <label for="no6" class="radio-btn-no-disabled">No</label></td>
+                <td class="td-job"><textarea id="ssrb_or_ssdrc_remarks" name="ssrb_or_ssdrc_remarks" rows="3" cols="22" 
+                        disabled>{{record.ssrb_or_ssdrc_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">
+                    {% if files_by_category.5_SSDRC_SSRB_Committee_Minutes_and_Closeouts %}
+                        {% for file in files_by_category.5_SSDRC_SSRB_Committee_Minutes_and_Closeouts %}
+                            <a href ="{{file.url }}"  style="text-align:center" download>{{file.name }}</a></br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}</td></td>
+            </tr>
+            <tr>
+                <td class="td-job" style="text-align:center">6.</td>
+                <td class="td-job" style="width: 378px;" colspan="2"><b>Additional Details if any</b></td>
+                <td class="td-job" style="text-align:center;"> <input type="radio" name="availability6" id="yes7" style="display:none;"  {% if True == record.availability6 %} checked {% endif %} disabled>
+                    <label for="yes7" class="radio-btn-yes-disabled">Yes</label>
+                    <input type="radio" style="display:none;" name="availability6" id="no7" {% if False == record.availability6 %} checked {% endif %} disabled>
+                    <label for="no7" class="radio-btn-no-disabled">No</label></td>
+                <td class="td-job"><textarea id="additional_remarks" name="additional_remarks" rows="3" cols="22" 
+                        disabled>{{record.additional_remarks}}</textarea></td>
+                <td class="td-job" style="width:auto;text-align:center;">
+                    {% if files_by_category.6_Additional_Documents %}
+                        {% for file in files_by_category.6_Additional_Documents %}
+                            <a href ="{{file.url }}"  style="text-align:center" download>{{file.name }}</a></br>
+                        {% endfor %}
+                    {% else %}
+                            <b>No file Attached</b>
+                    {% endif %}</td></td>
+            </tr>
+        </table>
+        <table class="table-job">
+            <tr>
+                <td class="td-job" style="text-align: center;"><b>Details Provided by:</b></td>
+                <td class="td-job" style="text-align: center;">Digital Sign</td>
+                <td class="td-job" style="text-align: center;"><b>Details Approved by:</b></td>
+                <td class="td-job" style="text-align: center;">Digital Sign</td>
+            </tr>
+            <tr>
+                <td class="td-job" colspan="1"><input type="text" disabled name="request_provided_by"
+                        style="width: 97%; height:33px;" value="{{record.job_order_number.request_provided_by}}" disabled></td>
+                <td class="td-job"></td>
+                <td class="td-job" colspan="1"><input type="text" disabled name="request_authorized_by"
+                        style="width: 97%; height:33px;" value="{{record.job_order_number.request_authorized_by}}" disabled></td>
+            </tr>
+        </table>
+        </br>
+        <center>{% if page_obj.has_previous %} <a href="?page={{page_obj.previous_page_number}}">  <- Prev  </a>{% endif %} &nbsp;&nbsp;&nbsp;&nbsp; {% if page_obj.has_next %} <a href="?page={{page_obj.next_page_number}}"> Next -> </a>{% endif %}
+            </center>
+
+
+    </div>
+{% endblock content %}

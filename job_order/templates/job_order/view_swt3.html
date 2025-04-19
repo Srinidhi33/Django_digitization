@@ -1,0 +1,92 @@
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+        <div class="job-container" style="margin-bottom:40px;">
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-JA-01.01-00<br>
+                LQAD(ELEC): REVIEW OF REQUIREMENTS / JOB ALLOTMENT FORM</b>
+            </div>
+            <table class="table-job" style="margin-bottom: 10px;">    
+                    <tr>
+                        <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                        <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> /<b id="year" ></b>  / {{record.job_order_number}} </b></td>
+                            <td class="td-job" style="text-align: center;">Date: <b id="date">{{record.date}}</b>
+                        </td>
+                    </tr>
+            </table>
+            <table class="table-job" style="margin-bottom: 10px;">
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>Requirement:</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border :1px solid black" ><input type="text" name="requirement" id="requirement" value="{{record.job_order_number.requirement}}"  disabled style="width: 100%; height:45px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>PROJECT:</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border :1px solid black" ><input type="text" name="project" id="project"value="{{record.job_order_number.project}}"  disabled style="width: 100%; height:45px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>SENSOR:</b> </td>
+                        <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="sensor" id="sensor" value="{{record.job_order_number.sensor}}" disabled style="width: 100%;height:45px;" ></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>Nature of Work</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="nature_of_work" id="nature_of_work" value="{{record.nature_of_work}}" disabled style="width: 100%; height:45px;"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Availability of Inputs</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="availability_of_inputs" value="{{record.availability_of_inputs}}" disabled   style="width: 100%;height:45px;" id="availability_of_inputs"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Required by (date)</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="required_by_date" value="{{record.required_by_date}}" style="width: 100%;height:45px;" disabled id="required_by_date"></td>
+                    </tr>
+                  
+                    <tr>
+                            <td class="td-no-bor" colspan="2"  style="text-align: center ; border: 1px solid black;width: 100%;height:60px;"><b>Work Allotment Details</b> </td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Job Alotted to</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="job_alloted_to" value="{{record.job_alloted_to}}" disabled style="width: 100%;height:45px;" id="job_alloted_to"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Likely Date of job commencement</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="date" value="{{record.date_of_commencement}}"disabled name="date_of_commencement" style="width: 100%;height:60px;" id="date_of_commencement"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Completion Date</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="date" value="{{record.completion_date}}" disabled name="completion_date" style="width: 100%;height:45px;" id="completion_date"></td>
+                    </tr>
+                <table class="table-job">
+                    <tr>
+                        <td class="td-job" style="text-align: center;"><b>Job Allotted by:</b></td>
+                        <td class="td-job" style="text-align: center;">Digital Sign</td>
+                        <td class="td-job" style="text-align: center;"><b>Job Authorized by:</b></td>
+                        <td class="td-job" style="text-align: center;border: 1px solid black">Digital Sign</td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" colspan="1"><input type="text"  name="job_allotted_by" style="width: 97%; height:33px;"value="{{record.job_allotted_by}}" disabled></td>
+                        <td class="td-job"></td>
+                        <td class="td-job" colspan="1"><input type="text" name="job_authorized_by" style="width: 97%; height:33px;"value="{{record.job_authorized_by}}" disabled></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" style="text-align: center;"><b>Recieved by (Subsystem):</b></td>
+                        <td class="td-job" style="text-align: center; ">Digital Sign</td>
+                        <td class="td-job"  style="text-align: center;padding:3px; " rowspan="2" colspan="2"><input type="text" name="comments" value="{{record.comments}}" disabled placeholder="Comments" style="width: 100%;height:80px;" id="comments"></td></td>
+                                               
+                    </tr>
+                    <tr>
+                        <td class="td-job" colspan="1"><input type="text"  name="received_by" style="width: 97%; height:33px;" value="{{record.received_by}}" disabled></td>
+                        <td class="td-job"></td>
+                    </tr>
+            </table>
+                    
+                    
+                       
+        </br>
+        <center>{% if page_obj.has_previous %} <a href="?page={{page_obj.previous_page_number}}">  <- Prev  </a>{% endif %} &nbsp;&nbsp;&nbsp;&nbsp; {% if page_obj.has_next %} <a href="?page={{page_obj.next_page_number}}"> Next -> </a>{% endif %}
+            </center>
+        </div>
+
+
+{% endblock content %}

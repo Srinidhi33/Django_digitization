@@ -1,0 +1,32 @@
+{% extends "job_order/base.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+    <form id="get_job_Order_Form" action="{% url 'get_num' %}" method="post">
+        {% csrf_token %}
+        <div class="job-container" style="margin-top:0px; border:2px solid black;padding:15px;">
+            <center>
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-JO-01-01-00</b><br>
+                JOB ORDER GIVEN TO LQAD(ELEC), SRQG, LEOS
+            </div>
+            <table class="table-get" style="margin-bottom: 10px;">
+                <tr>
+                    <td class="td-get" style="text-align: center;padding-right:8px;"><B>JOB ORDER number:</B></td>
+                    <td class="td-get" style="text-align: center;padding-right:8px;"><input type="number" name="jo_num" id="jo_num"  ></td>
+                    <td class="td-get" style="text-align: center;"><button class="submit-btn" type="submit" onclick="return validateForm()">Submit</button></td>
+                </tr>
+            </table>
+        </center>
+        </div>
+    </form>
+    <script>
+        function validateForm(){
+                let number=document.getElementById('jo_num').value.trim();
+                if  (number===''){
+                    alert("Please Enter atleast One Number")
+                    return false; 
+                }
+        }
+    </script>
+{% endblock content %}

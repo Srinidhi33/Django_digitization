@@ -1,0 +1,25 @@
+
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+        <div class="job-container" style="margin-bottom:40px;">
+            <div class="job-header" style="padding-bottom: 10px;">
+               
+            <center>
+                <h3>
+                    Currently we offer services for Software Code Walkthrough only.<br> <br>The checklist Pages data couldnt be populated by <br><b> {{user.username}} </b> for '<b>{{record.requirement}}</b>' activity hence no data is available.
+                </h3>
+                </center>
+         
+
+        </div>
+                                 <center>
+   {% if page_obj.has_previous %} <a href="?page={{page_obj.previous_page_number}}">  <- Prev  </a>{% endif %} &nbsp;&nbsp;&nbsp;&nbsp; {% if page_obj.has_next %} <a href="?page={{page_obj.next_page_number}}"> Next -> </a>{% endif %}
+                                 </center>
+
+    </div>
+
+
+
+{% endblock content %}

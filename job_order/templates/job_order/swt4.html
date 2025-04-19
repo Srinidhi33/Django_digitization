@@ -1,0 +1,140 @@
+
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+       <form id="swt4-form" action="{% url 'update_fourth_page' %}"  method="post">
+        {% csrf_token %}
+        <div class="job-container" style="margin-bottom:40px;">
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-FB-08.01-00<br>
+                LQAD(ELEC): CUSTOMER FEEDBACK FORM</b>
+            </div>
+            <table class="table-job" style="margin-bottom: 10px;">    
+                    <tr>
+                        <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                        <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> /<b id="year" ></b>  / {{context.job_order_number}} </b></td>
+                        <td class="td-job" style="text-align: center;">Date: <b id="date"></b>
+                            <input type="hidden" name="job_order_number" value="{{context.job_order_number}}">
+                    </tr>
+            </table>
+            <table class="table-job" style="margin-bottom: 10px;">
+                    
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>PROJECT                                                                            </b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border :1px solid black" ><input type="text" name="project" id="project" disabled value="{{context.project}}"  style="width: 100%; height:45px;"readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>SENSOR</b> </td>
+                        <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="sensor" id="sensor" disabled value="{{context.sensor}}" style="width: 100%;height:45px;" readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>EXACT NATURE <br>OF WORK</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" value="{{context.enow}}" disabled name="enow" id="enow" style="width: 100%; height:65px;"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>T&E ENGINEER </b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="t_and_e_engineer" style="width: 100%;height:52px;" id="t_and_e_engineer"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>CUSTOMER <br>GRADING ON<br>WORK</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black;text-align:center;">
+                                <input type="radio" style="display:none;"id="excellent" name="rating" value="excellent"><label for="excellent" class="rating-btn">Excellent<br>(10)</label>
+                                <input type="radio" style="display:none;"id="verygood" name="rating" value="verygood"><label for="verygood" class="rating-btn">Verygood<br>(8)</label>
+                                <input type="radio" style="display:none;"id="good" name="rating" value="good"><label for="good" class="rating-btn" >Good<br>(6)</label>
+                                <input type="radio" style="display:none;"id="satisfactory" name="rating" value="satisfactory"><label for="satisfactory" class="rating-btn">Satisfactory<br>(4)</label>
+                                <input type="radio" style="display:none;"id="poor" name="rating" value="poor"><label for="poor" class="rating-btn">Poor<br>(2)</label>
+                                <input type="radio" style="display:none;"id="nocomments" name="rating" value="nocomments"><label for="nocomments" class="rating-btn">No Comment<br>(0)</label>
+                            </td>
+                    </tr>
+                  
+                   <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>SUB-SYSTEM ENGINEER</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="subsystem" style="width: 100%;height:52px;" id="subsystem"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>SIGNATURE WITH DATE </b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="signature" style="width: 100%;height:52px;" id="signature"></td>
+                    </tr>
+           
+                   
+                    
+            </table>
+            <br>
+            <br>
+            <br>
+<textarea id="Remarks" name="Remarks" rows="5" class="form-control" placeholder="Complaints / Remarks / Suggestions for Continual Improvement"></textarea>
+        </br>
+            <center>
+                <button class="submit-btn" type="submit" onclick="return validateForm()">Submit</button>
+                <button class="clear-btn" id="clear-btn" type="button" onclick="clearForm()">Clear</button>
+            </center>
+        </div>
+    </form>
+<script>
+    var today=new Date();
+    var date=today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear();
+    document.getElementById("date").innerText=date;
+            document.getElementById("year").innerText=today.getFullYear();
+
+
+    function validateForm() {
+    let enow = document.getElementById("enow").value.trim();
+    let t_and_e_engineer = document.getElementById("t_and_e_engineer").value.trim();
+    let subsystem = document.getElementById("subsystem").value.trim();
+    let signature = document.getElementById("signature").value.trim();
+   
+    if (enow === '') {
+                alert("Please enter EXACT NATURE OF WORK.");
+                return false;
+            }
+    if (t_and_e_engineer === '') {
+                alert("Please enter T&E ENGINEER details.");
+                return false;
+            }
+    
+    
+     
+    let radios = document.querySelectorAll("input[name='rating']");
+    let checkedRadio = Array.from(radios).find(radio => radio.checked);
+    let atLeastOneChecked=false;
+
+    if (checkedRadio){
+        atLeastOneChecked=true;
+    }
+    if (!atLeastOneChecked){
+        alert("Please select Rating.")
+        console.log(atLeastOneChecked)
+        return false;
+    }
+    
+    
+    if (subsystem === '') {
+                alert("Please enter Sub-System details");
+                return false;
+            }
+    if (signature === '') {
+                alert("Please enter Signature(name) with date.");
+                return false;
+            }
+    alert("Forms submitted successfully.");
+    return true;
+    
+}
+
+
+
+    function clearForm() {
+            document.querySelectorAll("#swt4-form input[type='text'],input[type='radio'], textarea").forEach(input => {
+                if (input.type === 'text' && !input.disabled) input.value = '';      
+                if (input.type === 'radio') input.checked = false;
+                if (input.tagName === 'TEXTAREA') input.value = '';
+
+            });
+        }
+    
+</script>
+
+
+{% endblock content %}

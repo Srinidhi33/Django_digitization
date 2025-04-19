@@ -1,0 +1,168 @@
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+       <form id="swt3-form" action="{% url 'update_third_page' %}"  method="post">
+        {% csrf_token %}
+        <div class="job-container" style="margin-bottom:40px;">
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-JA-01.01-00<br>
+                LQAD(ELEC): REVIEW OF REQUIREMENTS / JOB ALLOTMENT FORM</b>
+            </div>
+            <table class="table-job" style="margin-bottom: 10px;">    
+                    <tr>
+                        <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                        <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> /<b id="year" ></b>  / {{context.job_order_number}} </b></td>
+                            <td class="td-job" style="text-align: center;">Date: <b id="date"></b>
+                                <input type="hidden" name="job_order_number" value="{{context.job_order_number}}">
+                        </td>
+                    </tr>
+            </table>
+            <table class="table-job" style="margin-bottom: 10px;">
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>Requirement:</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border :1px solid black" ><input type="text" name="requirement" id="requirement" value="{{context.requirement}}"  disabled style="width: 100%; height:45px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>PROJECT:</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border :1px solid black" ><input type="text" name="project" id="project"value="{{context.project}}"  disabled style="width: 100%; height:45px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>SENSOR:</b> </td>
+                        <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="sensor" id="sensor" value="{{context.sensor}}" disabled style="width: 100%;height:45px;" ></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>Nature of Work</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="nature_of_work" id="nature_of_work" style="width: 100%; height:45px;"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Availability of Inputs</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="availability_of_inputs" style="width: 100%;height:45px;" id="availability_of_inputs"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Required by (date)</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="required_by_date" value="{{context.required_by_date}}" style="width: 100%;height:45px;" disabled id="required_by_date"></td>
+                    </tr>
+                  
+                    <tr>
+                            <td class="td-no-bor" colspan="2"  style="text-align: center ; border: 1px solid black;width: 100%;height:60px;"><b>Work Allotment Details</b> </td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Job Alotted to</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="job_alloted_to" style="width: 100%;height:45px;" id="job_alloted_to"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Likely Date of job commencement</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="date" name="date_of_commencement" style="width: 100%;height:60px;" id="date_of_commencement"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>Completion Date</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="date" name="completion_date" style="width: 100%;height:45px;" id="completion_date"></td>
+                    </tr>
+                <table class="table-job">
+                    <tr>
+                        <td class="td-job" style="text-align: center;"><b>Job Allotted by:</b></td>
+                        <td class="td-job" style="text-align: center;">Digital Sign</td>
+                        <td class="td-job" style="text-align: center;"><b>Job Authorized by:</b></td>
+                        <td class="td-job" style="text-align: center;border: 1px solid black">Digital Sign</td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" colspan="1"><input type="text"  name="job_allotted_by" style="width: 97%; height:33px;"value="Person 1" readonly></td>
+                        <td class="td-job"></td>
+                        <td class="td-job" colspan="1"><input type="text" name="job_authorized_by" style="width: 97%; height:33px;"value="Person 2" readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="td-job" style="text-align: center;"><b>Recieved by (Subsystem):</b></td>
+                        <td class="td-job" style="text-align: center; ">Digital Sign</td>
+                        <td class="td-job"  style="text-align: center;padding:3px; " rowspan="2" colspan="2"><input type="text" name="comments" placeholder="Comments" style="width: 100%;height:80px;" id="comments"></td></td>
+                                               
+                    </tr>
+                    <tr>
+                        <td class="td-job" colspan="1"><input type="text"  name="received_by" style="width: 97%; height:33px;" value="Person 3" readonly></td>
+                        <td class="td-job"></td>
+                    </tr>
+            </table>
+                    
+                    
+                       
+        </br>
+            <center>
+                <button class="submit-btn" onclick="return validateForm()" type="submit">Submit</button>
+                <button class="clear-btn" id="clear-btn" type="button" onclick="clearForm()">Clear</button>
+            </center>
+        </div>
+    </form>
+<script>
+    var today=new Date();
+    var date=today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear();
+    document.getElementById("date").innerText=date;    
+    document.getElementById("year").innerText = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", function () {    
+    let date_of_commencement = document.getElementById("date_of_commencement");
+    let completion_date=document.getElementById("completion_date");
+
+    let minDate = new Date();
+    minDate.setDate(today.getDate() + 1);
+    date_of_commencement.min = minDate.toISOString().split("T")[0];
+    completion_date.min=minDate.toISOString().split("T")[0];
+    
+    completion_date.addEventListener("change",function(){
+        if (completion_date.value<date_of_commencement.value){
+            alert("Date of Completion Should ahead of Date of Commencement");
+            completion_date.value="";
+        }
+    });
+
+
+    });
+    function validateForm() {
+    
+
+    let nature_of_work = document.getElementById("nature_of_work").value.trim();
+    let availability_of_inputs = document.getElementById("availability_of_inputs").value.trim();
+    let required_by_date = document.getElementById("required_by_date").value.trim();
+    let job_alloted_to = document.getElementById("job_alloted_to").value.trim();
+    let date_of_commencement = document.getElementById("date_of_commencement").value.trim();
+    let completion_date = document.getElementById("completion_date").value.trim();
+    if (nature_of_work === '') {
+                alert("Please enter Nature of work details.");
+                return false;
+            }
+    if (availability_of_inputs === '') {
+                alert("Please enter Availability of Inputs.");
+                return false;
+            }
+    if (required_by_date === '') {
+                alert("Please enter Required By Date.");
+                return false;
+            }
+    if (job_alloted_to === '') {
+                alert("Please enter to whom Job is Alloted.");
+                return false;
+            }
+    if (date_of_commencement === '') {
+                alert("Please enter the date of Commencement.");
+                return false;
+            }
+    if (completion_date === '') {
+                alert("Please enter Estimated Date of Completion.");
+                return false;
+            }
+    
+        
+    alert("Form submitted successfully!");
+    return true;
+    }
+
+    function clearForm() {
+            document.querySelectorAll("#swt3-form input[type='text'],input[type='date']").forEach(input => {
+            if (input.type === 'text' && !input.disabled && !input.hasAttribute('readonly')  ) input.value = '';        
+            else if (input.type==='date') input.value='';     
+            });
+        }
+        
+</script>
+
+
+{% endblock content %}

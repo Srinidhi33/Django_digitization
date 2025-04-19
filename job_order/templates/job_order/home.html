@@ -1,18 +1,32 @@
-{% extends "job_order/base.html" %}
-{% block content %}
-<h1 class="mt-5">Job Order</h1>
-<h2> Welcome to the Job Order Home Page</h2>
 
-<!-- {% for post in posts %}
-<article class="media content-section">
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ post.author }}</a>
-            <small class="text-muted">{{ post.date_posted }}</small>
-        </div>
-        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
-    </div>
-</article>
-{% endfor %} -->
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content_header %} 
+<center><h2> <u>Welcome to the Job Order Home Page</u></h2></center>
+<br>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="content-section" style="width:50%">
+<h3 style="text-align:center;color:green">All users Job Orders</h3>
+
+<ol class="list-group">
+    {% if context %}
+        {%for jor_no in context %}
+
+            <li class="list-group-item list-group-item-light">{{forloop.counter}}. <a href= {% url 'view_job_order' job_order_number=jor_no %}>ELEC/ JO/ <b>ACTIVITY</b> /<b>2025</b>  / {{ jor_no }} </a></li>  
+
+        {%endfor%}
+    {% else %}
+        <p>NIL</p>
+    {%endif%}
+
+
+</ol>
+</div>
+
+
+
 {% endblock content %}

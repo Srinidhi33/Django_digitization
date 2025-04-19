@@ -1,0 +1,98 @@
+
+body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    width: 62%;
+    margin: auto;
+    border: 1px solid black;
+    padding: 10px;
+}
+.footer {
+    text-align: center;
+    font-weight: bold;
+}
+.top-content{
+    margin-bottom:15px ;
+    margin-top:15px ;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+
+}
+
+h3,h4{
+    margin: 0px;
+    text-align:center;
+}
+h4{
+    padding: 5px;
+    text-align:center;
+
+}
+.top-span{
+    border:2px solid black;
+    padding:5px;
+    align-items: center;
+    width: 100%;
+}
+.header {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+}
+
+.right-align {
+    position: absolute;
+    top: 0;
+    right: 10px; /* Adjust as needed */
+    display: flex;
+    align-items: center; /* Ensures proper vertical alignment */
+    gap: 5px; 
+    padding-top: 15px;
+}
+
+.right-align input {
+    width: 180px; /* Adjust width as needed */
+    border: 1px solid black;
+    outline: none;
+    height: 11px;
+    padding-top: 15px;
+
+}
+.submit-btn {
+    background-color: green;
+    width: 100px;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: rgb(255, 0, 0);
+    width: 100px;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+}
+.submit-btn:hover {
+    background-color: rgb(124, 168, 58);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgb(43, 255, 0), 0 0 30px rgb(81, 255, 0);
+
+}
+.clear-btn:hover {
+    background-color: #ee5050;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #ee5050, 0 0 30px #ee5050;
+}
+

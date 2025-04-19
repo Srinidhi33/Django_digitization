@@ -1,0 +1,495 @@
+
+.job-container {
+    width: 100%;
+    margin: auto;
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.job-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.table-job {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border: 1px solid rgb(0, 0, 0);
+    /* font-size: medium; */
+}
+
+.th-job,
+.td-job {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black;
+    
+}
+.table-no-bor {
+    width: 100%;
+    border-collapse: collapse;
+    /* text-align: center; */
+    /* font-size: medium; */
+}
+.td-no-bor{
+    padding: 8px;
+    text-align: left;
+    width:21.3%;
+
+}
+
+.checkbox {
+    appearance: none;
+    /* Removes default styling */
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    /* Dark black outline */
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+}
+
+.checkbox:checked {
+    background-color: white;
+    /* Black fill when checked */
+    border: 2px solid black;
+}
+
+.checkbox:checked::after {
+    content: "✔";
+    /* Checkmark */
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox:disabled {
+    cursor: not-allowed;
+    /* Change cursor to stop sign */
+    opacity: 0.5;
+    /* Optional: Make disabled checkboxes look faded */
+}
+
+.child-checkbox {
+    width: 40px;
+    /* Adjust the width */
+    height: 20px;
+    /* Adjust the height */
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 10px;
+}
+
+.submit-btn:hover {
+    background-color: rgb(124, 168, 58);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgb(43, 255, 0), 0 0 30px rgb(81, 255, 0);
+
+}
+
+
+.clear-btn:hover {
+    background-color: #ee5050;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #ee5050, 0 0 30px #ee5050;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.submit-btn {
+    background-color: green;
+    /* Green */
+    color: white;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: rgb(255, 0, 0);
+    /* Red */
+    color: white;
+    font-weight: bold;
+}
+
+.input-box {
+    /* width: 85%; */
+    padding: 5px;
+}
+.rating-btn{
+    /* background-color: aqua; */
+    /* gap: 10px;; */
+    background-color: white;
+    width: 132px;;
+    height:70px;
+    align-items: center;
+    text-align: center;
+    cursor:pointer;
+    transition: transform 0.2s,opacity 0.2s;
+    color:black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;  
+    transform: scale(0.95);
+    /* border-color: black; */
+}
+
+.rating-btn:hover{
+    opacity: 0.65;
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgb(0, 0, 0);
+}
+input[type='radio']:checked+.rating-btn{
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border:5px solid green
+}
+
+#excellent+.rating-btn{
+    background-color: white;
+    color: black;
+    border:4px solid darkgreen;
+}
+#excellent:hover+.rating-btn{
+    background-color: darkgreen;
+    color: white;
+}
+#excellent:checked+.rating-btn{
+    background-color: darkgreen;
+    color: white;
+}
+
+#verygood+.rating-btn{
+    background-color: white;
+    color:black;
+    border:4px solid rgb(110, 204, 32);
+}
+
+#verygood:hover+.rating-btn{
+    background-color: rgb(110, 204, 32);
+    color: white;
+}
+
+#verygood:checked+.rating-btn{
+    background-color: rgb(110, 204, 32);
+    color: white;
+
+}
+
+#good+.rating-btn{
+    border:4px solid rgb(214, 211, 19);
+    color:black;
+    background-color: white;
+
+}
+#good:hover+.rating-btn{
+    background-color: rgb(214, 211, 19);
+    color: white;
+
+}
+#good:checked+.rating-btn{
+    background-color: rgb(214, 211, 19);
+    color: white;
+
+}
+#satisfactory+.rating-btn{
+    border:4px solid rgb(255, 165, 0);
+    color:black;
+    background-color: white;
+}
+#satisfactory:hover+.rating-btn{
+    background-color: rgb(255, 165, 0);
+    color: white;
+}
+#satisfactory:checked+.rating-btn{
+    background-color: rgb(255, 165, 0);
+    color: white;
+}
+
+#poor+.rating-btn{
+    border:4px solid rgb(235, 60, 7);
+    color: black;
+    background-color: white;
+}
+
+#poor:hover+.rating-btn{
+    background-color: rgb(235, 60, 7);
+    color: white;
+}
+
+#poor:checked+.rating-btn{
+    background-color: rgb(235, 60, 7);
+    color: white;
+}
+
+#nocomments+.rating-btn{
+    
+  border:4px solid rgb(235, 11, 11);
+  background-color: white;
+  color: black;
+}
+#nocomments:hover+.rating-btn{
+    background-color: rgb(235, 11, 11);
+    color: white;
+}
+#nocomments:checked+.rating-btn{
+    background-color: rgb(235, 11, 11);
+    color: white;
+}
+label{
+    background-color: #007BFF;
+    color: white;
+    padding: 0.5rem;
+    border: 2px solid black;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    border-radius: 5px;
+    
+
+}
+label:hover{
+    opacity: 0.7;
+}
+.radio-btn-yes{
+    /* background-color: aqua; */
+    /* gap: 10px;; */
+    width: 48px;
+    height:45px; 
+    align-items: center;
+    text-align: center;
+    cursor:pointer;
+    transition: transform 0.2s,opacity 0.2s;
+    color:black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    border:3px solid rgb(110, 204, 32);
+    background-color: white;
+}
+.radio-btn-no{
+    /* background-color: aqua; */
+    /* gap: 10px;; */
+    width: 48px;
+    height:45px; 
+    align-items: center;
+    text-align: center;
+    cursor:pointer;
+    transition: transform 0.2s,opacity 0.2s;
+    color:black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    border:3px solid rgb(235, 11, 11);
+    background-color: white;
+
+    
+}
+.radio-btn-yes:hover{
+    opacity: 0.65;
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgb(110, 204, 32);
+    background-color: rgb(110, 204, 32);
+    color:white;
+
+}
+.radio-btn-no:hover{
+    opacity: 0.65;
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgb(235, 11, 11);
+    background-color: rgb(235, 11, 11);
+    color:white
+
+
+}
+
+.radio-btn-yes-disabled{
+    width: 48px;
+    height:45px; 
+    align-items: center;
+    text-align: center;
+    cursor:not-allowed;
+    color:black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    border:3px solid rgb(110, 204, 32);
+    background-color: white;
+}
+.radio-btn-yes-disabled:hover{
+    background-color: white;
+    color:black;
+
+}
+.radio-btn-no-disabled:hover{
+    background-color: rgb(235, 11, 11);
+    color:white
+
+
+}
+
+.radio-btn-no-disabled{
+    /* background-color: aqua; */
+    /* gap: 10px;; */
+    width: 48px;
+    height:45px; 
+    align-items: center;
+    text-align: center;
+    cursor:not-allowed;
+    transition: transform 0.2s,opacity 0.2s;
+    color:black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    border:3px solid rgb(235, 11, 11);
+    background-color: white;
+
+    
+}
+
+input[type='radio']:checked+.radio-btn-yes-disabled{
+    box-shadow: 0 2px 4px rgba(143, 84, 84, 0.2);
+    background-color: rgb(110, 204, 32);
+    color:white;
+
+}
+input[type='radio']:checked+.radio-btn-no-disabled{
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: rgb(235, 11, 11);
+    color:white;
+
+}
+
+
+input[type='radio']:checked+.radio-btn-yes{
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(143, 84, 84, 0.2);
+    background-color: rgb(110, 204, 32);
+    color:white;
+
+}
+input[type='radio']:checked+.radio-btn-no{
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: rgb(235, 11, 11);
+    color:white;
+
+}
+
+
+.rating-btn-disabled{
+    /* background-color: aqua; */
+    /* gap: 10px;; */
+    background-color: white;
+    width: 132px;;
+    height:70px;
+    align-items: center;
+    text-align: center;
+    cursor:not-allowed;
+    transition: transform 0.2s,opacity 0.2s;
+    color:black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;  
+    transform: scale(0.95);
+    /* border-color: black; */
+}
+
+
+input[type='radio']:checked+.rating-btn-disabled{
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border:5px solid green
+}
+
+#excellent+.rating-btn-disabled{
+    background-color: white;
+    color: black;
+    border:4px solid darkgreen;
+}
+
+#excellent:checked+.rating-btn-disabled{
+    background-color: darkgreen;
+    color: white;
+}
+
+#verygood+.rating-btn-disabled{
+    background-color: white;
+    color:black;
+    border:4px solid rgb(110, 204, 32);
+}
+
+
+
+#verygood:checked+.rating-btn-disabled{
+    background-color: rgb(110, 204, 32);
+    color: white;
+
+}
+
+#good+.rating-btn-disabled{
+    border:4px solid rgb(214, 211, 19);
+    color:black;
+    background-color: white;
+
+}
+
+#good:checked+.rating-btn-disabled{
+    background-color: rgb(214, 211, 19);
+    color: white;
+
+}
+#satisfactory+.rating-btn-disabled{
+    border:4px solid rgb(255, 165, 0);
+    color:black;
+    background-color: white;
+}
+
+#satisfactory:checked+.rating-btn-disabled{
+    background-color: rgb(255, 165, 0);
+    color: white;
+}
+
+#poor+.rating-btn-disabled{
+    border:4px solid rgb(235, 60, 7);
+    color: black;
+    background-color: white;
+}
+
+
+
+#poor:checked+.rating-btn-disabled{
+    background-color: rgb(235, 60, 7);
+    color: white;
+}
+
+#nocomments+.rating-btn-disabled{
+    
+  border:4px solid rgb(235, 11, 11);
+  background-color: white;
+  color: black;
+}
+
+#nocomments:checked+.rating-btn-disabled{
+    background-color: rgb(235, 11, 11);
+    color: white;
+}
+

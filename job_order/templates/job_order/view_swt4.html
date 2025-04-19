@@ -1,0 +1,74 @@
+{% extends "job_order/base.html" %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'job_order/job-style.css' %}">
+        {% csrf_token %}
+        <div class="job-container" style="margin-bottom:40px;">
+            <div class="job-header" style="padding-bottom: 10px;">
+                <b style="font-size: smaller;">GEN-LQAD-ELEC-FB-08.01-00<br>
+                LQAD(ELEC): CUSTOMER FEEDBACK FORM</b>
+            </div>
+            <table class="table-job" style="margin-bottom: 10px;">    
+                    <tr>
+                        <td class="td-job" style="text-align: center;">FRM-8200-01</td>
+                        <td class="td-job" style="text-align: center;"><b>REF no:</b> ELEC/ JO/ <b>ACTIVITY</b> /<b id="year" >{{record.year}}</b>  / {{record.job_order_number.job_order_number}} </b></td>
+                        <td class="td-job" style="text-align: center;">Date: <b id="date">{{record.date}}</b>
+                            
+                    </tr>
+            </table>
+            <table class="table-job" style="margin-bottom: 10px;">
+                    
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>PROJECT                                                                            </b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border :1px solid black" ><input type="text" name="project" id="project" disabled value="{{record.job_order_number.project}}"  style="width: 100%; height:45px;"readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>SENSOR</b> </td>
+                        <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="sensor" id="sensor" disabled value="{{record.job_order_number.sensor}}" style="width: 100%;height:45px;" readonly></td>
+                    </tr>
+                    <tr>
+                        <td class="td-no-bor" style="text-align: left  ;border-top:1px solid black;border-bottom:1px solid black;border-right: 1px solid black;"><b>EXACT NATURE <br>OF WORK</b></td>
+                        <td class="td-job" style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" value="{{record.job_order_number.enow}}" disabled name="enow" id="enow" style="width: 100%; height:65px;"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>T&E ENGINEER </b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="t_and_e_engineer" disabled value="{{record.t_and_e_engineer}}" style="width: 100%;height:52px;" id="t_and_e_engineer"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>CUSTOMER <br>GRADING ON<br>WORK</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black;text-align:center;">
+                                <input type="radio" style="display:none;"id="excellent" name="rating"  {% if "excellent" == record.rating %} checked {% endif %} disabled><label for="excellent" class="rating-btn-disabled">Excellent<br>(10)</label>
+                                <input type="radio" style="display:none;"id="verygood" name="rating"  {% if "verygood" == record.rating %} checked {% endif %} disabled><label for="verygood" class="rating-btn-disabled">Verygood<br>(8)</label>
+                                <input type="radio" style="display:none;"id="good" name="rating"  {% if "good" == record.rating %} checked {% endif %} disabled><label for="good" class="rating-btn-disabled" >Good<br>(6)</label>
+                                <input type="radio" style="display:none;"id="satisfactory" name="rating"  {% if "satisfactory" == record.rating %} checked {% endif %} disabled><label for="satisfactory" class="rating-btn-disabled">Satisfactory<br>(4)</label>
+                                <input type="radio" style="display:none;"id="poor" name="rating"  {% if "poor" == record.rating %} checked {% endif %} disabled><label for="poor" class="rating-btn-disabled">Poor<br>(2)</label>
+                                <input type="radio" style="display:none;"id="nocomments" name="rating"  {% if "nocomments" == record.rating %} checked {% endif %} disabled><label for="nocomments" class="rating-btn-disabled">No Comment<br>(0)</label>
+                            </td>
+                    </tr>
+                  
+                   <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>SUB-SYSTEM ENGINEER</b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="subsystem" disabled value="{{record.subsystem}}" style="width: 100%;height:52px;" id="subsystem"></td>
+                    </tr>
+                    <tr>
+                            <td class="td-no-bor" style="text-align: left ;border: 1px solid black;"><b>SIGNATURE WITH DATE </b> </td>
+                            <td class="td-job"style="padding:0px 0px 0px 1px;border:1px solid black"><input type="text" name="signature" disabled value="{{record.signature}}" style="width: 100%;height:52px;" id="signature"></td>
+                    </tr>
+           
+                   
+                    
+            </table>
+            <br>
+            <br>
+            <br>
+<textarea id="Remarks" name="Remarks" rows="5" class="form-control" placeholder="Complaints / Remarks / Suggestions for Continual Improvement" disabled>{{ record.Remarks }}</textarea>
+        </br>
+             <center>{% if page_obj.has_previous %} <a href="?page={{page_obj.previous_page_number}}">  <- Prev  </a>{% endif %} {% if page_obj.has_next %} <a href="?page={{page_obj.next_page_number}}"> Next -> </a>{% endif %}
+            </center>
+
+        </div>
+
+
+
+{% endblock content %}
